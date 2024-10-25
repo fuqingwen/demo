@@ -1,12 +1,17 @@
 import uvicorn
 from fastapi import FastAPI
+import redis
 
 app = FastAPI()
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    host = '192.168.10.140'
+    rds = redis.Redis(host=host, port=6379, db=0)
+    print(f'host:{host}')
+    count = rds.incr('count')
+    return {"message": f"Hello World, {count}"}
 
 
 @app.get("/hello/{name}")
