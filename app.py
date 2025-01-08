@@ -7,10 +7,11 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    host = '192.168.10.140'
-    rds = redis.Redis(host=host, port=6379, db=0)
-    print(f'host:{host}')
-    count = rds.incr('count')
+    count = 1
+    # host = '192.168.10.140'
+    # rds = redis.Redis(host=host, port=6379, db=0)
+    # print(f'host:{host}')
+    # count = rds.incr('count')
     return {"message": f"Hello World, {count}"}
 
 
